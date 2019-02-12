@@ -79,20 +79,13 @@ class BinarySearchTreeDeleteTestCase(unittest.TestCase):
         self.assertEqual(delete_node.left, None)
         self.assertEqual(delete_node.right, None)
 
-    def test_should_replace_deleted_node_with_smallest_value_in_right_subtree(self):
+    def test_replace_deleted_node_with_smaller_child(self):
         self.tree.delete(8)
 
-        # in this tree, node "9" should replace the deleted node "8"
-        self.assertEqual(self.fifteen.left, self.nine)
-        self.assertEqual(self.nine.parent, self.fifteen)
-        self.assertEqual(self.nine.left, None)
-        self.assertEqual(self.nine.right, self.fourteen)
-
-        # node "9" will then be replaced with node "13"
-        self.assertEqual(self.fourteen.left, self.thirteen)
-        self.assertEqual(self.thirteen.parent, self.fourteen)
-        self.assertEqual(self.thirteen.left, self.ten)
-        self.assertEqual(self.thirteen.right, None)
+        # in this tree, node "14" should replace the deleted node "8"
+        self.assertEqual(self.fifteen.left, self.fourteen)
+        self.assertEqual(self.fourteen.parent, self.fifteen)
+        self.assertEqual(self.fourteen.left, self.nine)
 
 class BinarySearchTreeGetTestCase(unittest.TestCase):
 
