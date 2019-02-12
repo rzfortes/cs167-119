@@ -8,13 +8,13 @@ class BinarySearchTree:
 
     def insert(self, key, value):
         new_node = BinarySearchTreeNode(key, value, None, None, None)
-        if self.root == None:
+        if self.root is None:
             self.root = new_node
             inserted_node = self.root
         else:
             current = self.root
             prev = None
-            while current != None:
+            while current is not None:
                 prev = current
                 if key < current.key:
                     current = current.left
@@ -34,7 +34,7 @@ class BinarySearchTree:
     def delete(self, key):
         current = self.root
         child = 0 #ctr for children
-        while current != None:
+        while current is not None:
             if key == current.key:
                 break;
             elif key < current.key:
@@ -43,12 +43,12 @@ class BinarySearchTree:
             else:
                 current = current.right
                 child = 1
-        if current == None:
+        if current is None:
             return None
         else:
             delete = None
             temp_parent = current.parent
-            if current.left == None and current.right == None:
+            if current.left is None and current.right is None:
                 delete = current
                 delete.parent = None
                 if child == 1:
@@ -56,14 +56,14 @@ class BinarySearchTree:
                 elif child == -1:
                     temp_parent.left = None
                 elif child == 0:
-                    self.root == None
+                    self.root is None
                 delete.parent = None
                 delete.right = None
                 return delete
             else:
                 delete = current
                 delete.parent = None
-                if current.right == None:
+                if current.right is None:
                     temp_left = current.left
                     temp_left.parent = temp_parent
                     if current == self.root:
@@ -75,7 +75,7 @@ class BinarySearchTree:
                             temp_parent.left = temp_left
                     delete.right = None
                     return delete
-                elif current.left == None:
+                elif current.left is None:
                     temp_right = current.right
                     temp_right.parent = temp_parent
                     if current == self.root:
@@ -96,7 +96,7 @@ class BinarySearchTree:
 
     def get(self, key):
         current = self.root
-        while current != None:
+        while current is not None:
             if key == current.key:
                 return current.value
             elif key < current.key:
@@ -106,21 +106,21 @@ class BinarySearchTree:
         pass
 
     def minimum(self):
-        if self.root == None:
+        if self.root is None:
             return None
         else:
             current = self.root
-            while current.left != None:
+            while current.left is not None:
                 current = current.left
             return current.value
         pass
 
     def maximum(self):
-        if self.root == None:
+        if self.root is None:
             return None
         else:
             current = self.root
-            while current.right != None:
+            while current.right is not None:
                 current = current.right
             return current.value
         pass
