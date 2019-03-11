@@ -95,12 +95,12 @@ class SubjectsController extends Controller
         $subject = Subject::find($id);
 
         // double check user
-        // if(auth()->user()->id !== $subject->user_id) {
-        //     return redirect()->back()->with('error!');
-        // }
+        if(auth()->user()->id !== $subject->user_id) {
+            return redirect()->back()->with('error!');
+        }
 
         // delete all assignments under subject
-        // Assignment::where('courseName_id', $subject->id)->delete();
+        Assignment::where('courseName_id', $subject->id)->delete();
 
         $subject->delete();
         return redirect()->back();
